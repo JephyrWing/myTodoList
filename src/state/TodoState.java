@@ -9,8 +9,6 @@ import java.util.Map;
 public class TodoState {
     private Map<String, List<Todo>> todoMap = new HashMap<>();
 
-    //Getter
-    public Map<String, List<Todo>> getTodoMap() {
-        return todoMap;
+    public TodoState() {
     }
 }
