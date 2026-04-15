@@ -9,17 +9,18 @@ import java.util.Scanner;
 
 public class TodoView {
     private final Scanner sc;
-    private final TodoService todoService;
+    private final TodoService service;
 
-    public TodoView(Scanner sc, TodoService todoService) {
+    public TodoView(Scanner sc, TodoService service) {
         this.sc = sc;
-        this.todoService = todoService;
+        this.service = service;
     }
 
     public void start() {
+        int choice = 0;
         while (true) {
             printMenu();
-            int choice = sc.nextInt();
+            choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
@@ -71,7 +72,7 @@ public class TodoView {
         System.out.print("할 일 입력: ");
         String task = sc.next();
 
-        todoService.addTodo(date, time, task);
+        service.addTodo(date, time, task);
 
         System.out.println("저장 완료!");
     }
@@ -80,7 +81,7 @@ public class TodoView {
         System.out.print("날짜 입력: ");
         String date = sc.next();
 
-        List<Todo> list = todoService.getTodosByDate(date);
+        List<Todo> list = service.getTodosByDate(date);
         printList(date, list);
 
         if (list == null || list.isEmpty()) {
@@ -96,7 +97,7 @@ public class TodoView {
         System.out.print("새 할 일 입력: ");
         String task = sc.next();
 
-        // todoService.updateTodo 호출
+        service.updateTodo(date, index, time, task);
         System.out.println("수정 완료!");
     }
 
@@ -104,7 +105,7 @@ public class TodoView {
         System.out.print("날짜 입력: ");
         String date = sc.next();
 
-        List<Todo> list = todoService.getTodosByDate(date);
+        List<Todo> list = service.getTodosByDate(date);
         printList(date, list);
 
         if (list == null || list.isEmpty()) {
@@ -114,7 +115,7 @@ public class TodoView {
         System.out.print("삭제할 번호 선택: ");
         int index = sc.nextInt() - 1;
 
-        // todoService.deleteTodo 호출
+        service.deleteTodo(date, index);
         System.out.println("삭제 완료!");
     }
 
@@ -122,7 +123,7 @@ public class TodoView {
         System.out.print("날짜 입력: ");
         String date = sc.next();
 
-        List<Todo> list = todoService.getTodosByDate(date);
+        List<Todo> list = service.getTodosByDate(date);
         printList(date, list);
 
         if (list == null || list.isEmpty()) {
@@ -140,12 +141,12 @@ public class TodoView {
         System.out.print("날짜 입력: ");
         String date = sc.next();
 
-        List<Todo> list = todoService.getTodosByDate(date);
+        List<Todo> list = service.getTodosByDate(date);
         printList(date, list);
     }
 
     private void printAll() {
-        Map<String, List<Todo>> all = todoService.getAllTodos();
+        Map<String, List<Todo>> all = service.getAllTodos();
 
         if (all.isEmpty()) {
             System.out.println("등록된 할 일이 없습니다.");

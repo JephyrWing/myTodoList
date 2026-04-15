@@ -14,6 +14,7 @@ public class Main {
         TodoRepository todoRepository = new TodoRepositoryImpl(state);
         TodoService todoService = new TodoServiceImpl(todoRepository);
         TodoView todoView = new TodoView(sc, todoService);
+
         todoView.start();
     }
 }

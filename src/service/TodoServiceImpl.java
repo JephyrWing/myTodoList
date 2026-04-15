@@ -21,12 +21,12 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public List<Todo> getTodosByDate(String date) {
-        return List.of();
+        return repository.findByDate(date);
     }
 
     @Override
     public Map<String, List<Todo>> getAllTodos() {
-        return Map.of();
+        return repository.findAll();
     }
 
     @Override

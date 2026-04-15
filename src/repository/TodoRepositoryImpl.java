@@ -21,12 +21,18 @@ public class TodoRepositoryImpl implements TodoRepository{
 
     @Override
     public List<Todo> findByDate(String date) {
-        return List.of();
+        List<Todo> result = new ArrayList<>();
+        for (String s : state.getTodoMap().keySet()){
+            if (s.equals(date)) {
+                result = state.getTodoMap().get(s);
+            }
+        }
+        return result;
     }
 
     @Override
     public Map<String, List<Todo>> findAll() {
-        return Map.of();
+        return state.getTodoMap();
     }
 
     @Override
