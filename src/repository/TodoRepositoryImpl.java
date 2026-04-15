@@ -49,6 +49,6 @@ public class TodoRepositoryImpl implements TodoRepository{
 
     @Override
     public void complete(String date, int index) {
-        state.getTodoMap().get(date).get(index).isCompleted();
+        state.getTodoMap().get(date).get(index).setCompleted(true);
     }
 }
