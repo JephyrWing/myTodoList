@@ -31,7 +31,8 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void updateTodo(String date, int index, String time, String task) {
-
+        Todo temptodo = new Todo(time, task, false);
+        repository.update(date, index, temptodo);
     }
 
     @Override

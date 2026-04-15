@@ -1,14 +1,22 @@
 package repository;
 
+import state.TodoState;
 import vo.Todo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class TodoRepositoryImpl implements TodoRepository{
+    private final TodoState state;
+
+    public TodoRepositoryImpl(TodoState state) {
+        this.state = state;
+    }
     @Override
     public void add(String date, Todo todo) {
-
+        state.getTodoMap().put(date, new ArrayList<>());
+        state.getTodoMap().get(date).add(todo);
     }
 
     @Override
@@ -23,7 +31,7 @@ public class TodoRepositoryImpl implements TodoRepository{
 
     @Override
     public void update(String date, int index, Todo todo) {
-
+        state.getTodoMap().get(date).set(index, todo);
     }
 
     @Override
