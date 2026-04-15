@@ -15,7 +15,9 @@ public class TodoRepositoryImpl implements TodoRepository{
     }
     @Override
     public void add(String date, Todo todo) {
-        state.getTodoMap().put(date, new ArrayList<>());
+        if (state.getTodoMap().get(date) == null){
+            state.getTodoMap().put(date, new ArrayList<>());
+        }
         state.getTodoMap().get(date).add(todo);
     }
 
@@ -42,11 +44,11 @@ public class TodoRepositoryImpl implements TodoRepository{
 
     @Override
     public void delete(String date, int index) {
-
+        state.getTodoMap().get(date).remove(index);
     }
 
     @Override
     public void complete(String date, int index) {
-
+        state.getTodoMap().get(date).get(index).isCompleted();
     }
 }

@@ -37,11 +37,11 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void deleteTodo(String date, int index) {
-
+        repository.delete(date, index);
     }
 
     @Override
     public void completeTodo(String date, int index) {
-
+        repository.complete(date, index);
     }
 }

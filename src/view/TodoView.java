@@ -133,7 +133,7 @@ public class TodoView {
         System.out.print("완료 처리할 번호 선택: ");
         int index = sc.nextInt() - 1;
 
-        // todoService.completeTodo 호출
+        service.completeTodo(date, index);
         System.out.println("완료 처리 완료!");
     }
 
@@ -164,7 +164,6 @@ public class TodoView {
             System.out.println("해당 날짜의 할 일이 없습니다.");
             return;
         }
-
         System.out.println("\n[" + date + "]");
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + ". " + list.get(i));
