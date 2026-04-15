@@ -1,14 +1,22 @@
 package service;
 
+import repository.TodoRepository;
 import vo.Todo;
 
 import java.util.List;
 import java.util.Map;
 
 public class TodoServiceImpl implements TodoService{
+    private final TodoRepository repository;
+
+    public TodoServiceImpl(TodoRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void addTodo(String date, String time, String task) {
-
+        Todo temptodo = new Todo(time, task, false);
+        repository.add(date, temptodo);
     }
 
     @Override
